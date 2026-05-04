@@ -1,0 +1,263 @@
+/* BASE RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+
+/* NAVBAR WITH CENTERED LINKS */
+.navbar {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    width: 90%; max-width: 1100px; display: grid;
+    grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: 12px 40px; background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px); border-radius: 50px; z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-link {
+    grid-column: 1;
+    text-decoration: none;
+    justify-self: start;
+    transition: transform 0.2s ease;
+}
+
+.logo-link:hover { transform: scale(1.05); }
+
+.logo { font-weight: bold; font-size: 1.2rem; color: #fff; }
+.logo span { color: #ff9d00; }
+
+.nav-links {
+    grid-column: 2;
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.nav-spacer {
+    grid-column: 3;
+}
+
+/* NAVIGATION ITEMS */
+.nav-item {
+    text-decoration: none;
+    color: #7397E4;
+    padding: 8px 25px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 157, 0, 0.3);
+}
+
+/* INSTANT SNAP ANIMATION FOR CLICK */
+.nav-item.active { 
+    background-color: #ff9d00 !important; color: #000 !important; transition: none !important; }
+
+/* HERO SECTION */
+/* SECTION LAYOUTS */
+.page-section, .slide {
+    height: 100vh; display: flex; justify-content: center; 
+    align-items: center; position: relative; overflow: hidden;
+}
+
+.hero-container {
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px;
+}
+
+.hero-text h1 { 
+    font-size: 4.5rem; 
+    margin: 15px 0; 
+}
+
+.name{
+    font-size: 20px;
+    color: #ff9d00;
+}
+
+.dl{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+}
+
+.red-icon { 
+    color: #ff4d4d; 
+    font-family: monospace; 
+}
+
+.orange-circle { 
+    width: 380px; height: 
+    380px; background: #ff9d00; 
+    border-radius: 50%; 
+}
+
+.resume-btn {
+    background: #ff9d00;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* HORIZONTAL SCROLL ANIMATION */
+.horizontal-root {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+.horizontal-root::-webkit-scrollbar {background:scroll}
+
+.horizontal-wrapper {
+    display: flex;
+    width: 200vw;
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    position: relative;
+}
+
+/* CARDS & TEXT */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    padding: 60px;
+}
+
+.content-card {
+    padding: 60px;
+    width: 75%;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+/* THE BACKGROUND TEXT LABELS */
+.bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%); /* Slightly lower to start */
+    font-size: 18vw;
+    font-weight: 900;
+    color: rgb(255, 255, 255, 0); /* Hidden by default */
+    z-index: -1;
+    text-transform: uppercase;
+    transition: all 1.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.dev{
+    font-size: 100px;
+}
+
+.yellow-text{
+    color: #ff9d00;
+}
+
+.active .bg-text {
+    color: rgba(255, 255, 255, 0.97); /* Fades in when active */
+    transform: translate(-50%, -55%); /* Moves to center */
+}
+
+/* Ensure the slides are 'relative' so the bg-text knows where to center */
+.slide, .page-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* PROJECTS SECTION */
+.github-pill {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px 40px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+    color: #aaa;
+}
+
+.project-grid { display: flex; gap: 20px; }
+.preview-box { width: 320px; height: 480px; }
+
+/* NEW REVEAL ANIMATIONS */
+/* Ensure the starting state is always hidden and slightly down */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    visibility: hidden;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Red Icon glow effect */
+.red-icon { 
+    color: #ff4d4d; 
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.5); 
+}
+
+/* Smooth background text reveal */
+.bg-text {
+    position: absolute;
+    font-size: 18vw;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0); /* Start hidden */
+    z-index: -1;
+    text-transform: uppercase;
+    transition: color 1.5s ease;
+}
+
+.active .bg-text {
+    color: rgb(255, 255, 255); /* Fade in slowly */
+}
+
+/* Button Hover Animation */
+.resume-btn {
+    background: #ff9d00;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resume-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 157, 0, 0.4);
+}
+
+/* Ensures the contact section behaves like the others */
+#contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-card p {
+    color: #fff;
+    line-height: 1.6;
+}
+
