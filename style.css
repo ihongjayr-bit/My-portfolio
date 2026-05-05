@@ -524,10 +524,19 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 @media (max-width: 768px) {
     /* 1. Navbar Adjustments */
     .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 95%;
         padding: 10px 15px;
-        grid-template-columns: auto 1fr;
+        top: 10px; /* Moves it slightly up for more screen space */
     }
+
+    .logo-link {
+        flex: 0 0 auto;
+        margin-right: 10px;
+    }
+
 
     .nav-links::-webkit-scrollbar {
         display: none;
@@ -535,19 +544,25 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
     .nav-links {
         display: flex;
-        overflow-x: auto;
-        white-space: nowrap;
-        width: 100%;
-        padding-left: 10px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        overflow-x: auto; /* Enables horizontal swiping */
+        white-space: nowrap; /* Keeps items in one single line */
+        gap: 8px;
+        flex: 1; /* Takes up the rest of the bar */
+        scrollbar-width: none; /* Hides scrollbar on Firefox */
+        -ms-overflow-style: none; /* Hides scrollbar on IE/Edge */
+        padding: 5px 0;
     }
+
     .nav-item {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-        flex: 0 0 auto;
+        flex: 0 0 auto; /* This prevents "About" from disappearing */
+        padding: 8px 12px;
+        font-size: 0.85rem;
     }
-    .nav-spacer { display: none; }
+
+
+   .nav-spacer {
+        display: none;
+    }
 
     /* 2. Hero Section (Stacks vertically on phones) */
     .hero-container {
