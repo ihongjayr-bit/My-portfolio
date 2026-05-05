@@ -564,7 +564,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
         flex: 0 0 auto !important; /* Prevents 'About' from disappearing */
         font-size: 0.9rem;
     }
-
+    
     .nav-links::-webkit-scrollbar {
         display: none; /* Hide scrollbar for Chrome/Safari */
     }
