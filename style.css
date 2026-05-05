@@ -525,25 +525,20 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     /* 1. Navbar Adjustments */
     .navbar {
         display: flex !important;
-        justify-content: flex-start; 
         align-items: center;
-        width: 98%; /* Increased from 95% to make it longer */
-        padding: 8px 10px; /* Reduced padding to save space */
-        gap: 5px; /* Minimal gap between logo and links */
+        width: 98%;
+        padding: 6px 12px; /* Tighter vertical padding */
+        border-radius: 40px; /* Keep the navbar pill shape */
     }
 
    .logo-link {
         display: flex;
         flex-direction: column;
-        line-height: 0.9; /* Tighter vertical spacing for the logo */
-        flex: 0 0 auto;
-        margin-right: 8px; /* Reduced margin to bring links closer */
+        line-height: 0.8; 
+        margin-right: 10px;
     }
 
-    .logo {
-        font-size: 1rem !important; 
-        font-weight: bold;
-    }
+    .logo { font-size: 0.9rem !important; }
 
     .nav-links::-webkit-scrollbar {
         display: none;
@@ -551,20 +546,25 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
     .nav-links {
         display: flex !important;
-        flex: 1;
-        overflow-x: auto !important; /* Keep the horizontal scroll */
-        white-space: nowrap;
-        gap: 4px; /* Lowered spacing between nav items */
-        scrollbar-width: none;
-        padding: 5px 0;
+        gap: 6px; /* Space between the pills */
+        padding: 4px 0;
+        align-items: center;
     }
 
     .nav-item {
-        flex: 0 0 auto !important; 
-        padding: 6px 8px; /* Reduced horizontal padding for tighter spacing */
-        font-size: 0.8rem; /* Slightly smaller text to fit more items */
+        padding: 6px 12px !important; /* Smaller internal padding for mobile */
+        font-size: 0.75rem; /* Slightly smaller text for better fit */
+        border-radius: 20px !important; /* Ensures the pill shape is sharp */
+        display: inline-block;
+        white-space: nowrap;
     }
-    
+
+    .nav-item.active {
+        background-color: #ff9d00 !important;
+        color: #000 !important;
+        box-shadow: 0 2px 8px rgba(255, 157, 0, 0.3); /* Adds a subtle glow */
+    }
+
     .nav-links::-webkit-scrollbar {
         display: none; /* Hide scrollbar for Chrome/Safari */
     }
