@@ -30,6 +30,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     display: flex;
     gap: 10px;
     justify-content: center;
+    overflow: visible;
 }
 
 .nav-spacer {
@@ -529,16 +530,16 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     }
 
     .nav-links::-webkit-scrollbar {
-        display: none; /* Hides scrollbar on Chrome/Safari for a cleaner look[cite: 6] */
+        display: none;
     }
 
     .nav-links {
         display: flex;
-        overflow-x: auto; /* Enables horizontal scroll */
-        white-space: nowrap; /* Prevents items from wrapping to a new line */
-        gap: 15px;
-        padding: 5px 0;
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS[cite: 6] */
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+        padding-left: 10px;
+        -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
     .nav-item {
@@ -563,7 +564,6 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
         height: 200px;
     }
 
-    /* 3. Section Sizing */
     .content-card {
         width: 90%;
         padding: 30px;
@@ -575,7 +575,6 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
         font-size: 22vw; 
     }
 
-    /* 5. Project Grid (Vertical list for phones) */
     .project-grid {
         flex-direction: column;
         align-items: center;
