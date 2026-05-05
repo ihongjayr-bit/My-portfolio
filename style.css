@@ -525,22 +525,26 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     /* 1. Navbar Adjustments */
     .navbar {
         display: flex !important;
-        justify-content: space-between;
-        align-items: center;
-        width: 98%; /* Slightly wider to fit more items */
-        padding: 8px 12px;
-        gap: 5px;
+        align-items: center; /* Keeps links centered relative to the tall logo */
+        height: auto;
+        padding: 10px 15px;
     }
 
    .logo-link {
-        flex: 0 0 auto; /* Keeps the logo size constant */
-        max-width: 110px; /* Limits the logo's reach */
-        overflow: hidden;
+        display: flex;
+        flex-direction: column; /* Stacks 'IHONG' on top of 'J.R.' */
+        align-items: flex-start;
+        line-height: 1; /* Keeps the lines close together */
+        flex: 0 0 auto;
+        margin-right: 15px;
+        text-decoration: none;
     }
 
     .logo {
-        font-size: 1rem;
-
+        font-size: 1.2rem !important; /* Adjust size as needed */
+        display: block;
+        margin: 0;
+        padding: 0;
     }
 
     .nav-links::-webkit-scrollbar {
@@ -549,19 +553,16 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
     .nav-links {
         display: flex !important;
-        flex: 1; /* Tells the links to take all the leftover space */
-        overflow-x: auto !important; /* Enable the horizontal swipe */
-        white-space: nowrap; /* Keep buttons on one line */
-        gap: 5px;
-        padding: 5px 0;
-        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        flex: 1;
+        overflow-x: auto !important;
+        white-space: nowrap;
+        gap: 12px;
+        scrollbar-width: none;
     }
 
     .nav-item {
-        flex: 0 0 auto !important; /* Forces the browser to show the full text */
-        padding: 6px 12px;
-        font-size: 0.85rem;
-        background-color: rgba(255, 255, 255, 0.05); /* Added for better visibility */
+        flex: 0 0 auto !important; /* Prevents 'About' from disappearing */
+        font-size: 0.9rem;
     }
 
     .nav-links::-webkit-scrollbar {
