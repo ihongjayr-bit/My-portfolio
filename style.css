@@ -525,26 +525,24 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     /* 1. Navbar Adjustments */
     .navbar {
         display: flex !important;
-        align-items: center; /* Keeps links centered relative to the tall logo */
-        height: auto;
-        padding: 10px 15px;
+        justify-content: flex-start; 
+        align-items: center;
+        width: 98%; /* Increased from 95% to make it longer */
+        padding: 8px 10px; /* Reduced padding to save space */
+        gap: 5px; /* Minimal gap between logo and links */
     }
 
    .logo-link {
         display: flex;
-        flex-direction: column; /* Stacks 'IHONG' on top of 'J.R.' */
-        align-items: flex-start;
-        line-height: 1; /* Keeps the lines close together */
+        flex-direction: column;
+        line-height: 0.9; /* Tighter vertical spacing for the logo */
         flex: 0 0 auto;
-        margin-right: 15px;
-        text-decoration: none;
+        margin-right: 8px; /* Reduced margin to bring links closer */
     }
 
     .logo {
-        font-size: 1.2rem !important; /* Adjust size as needed */
-        display: block;
-        margin: 0;
-        padding: 0;
+        font-size: 1rem !important; 
+        font-weight: bold;
     }
 
     .nav-links::-webkit-scrollbar {
@@ -554,15 +552,17 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     .nav-links {
         display: flex !important;
         flex: 1;
-        overflow-x: auto !important;
+        overflow-x: auto !important; /* Keep the horizontal scroll */
         white-space: nowrap;
-        gap: 12px;
+        gap: 4px; /* Lowered spacing between nav items */
         scrollbar-width: none;
+        padding: 5px 0;
     }
 
     .nav-item {
-        flex: 0 0 auto !important; /* Prevents 'About' from disappearing */
-        font-size: 0.9rem;
+        flex: 0 0 auto !important; 
+        padding: 6px 8px; /* Reduced horizontal padding for tighter spacing */
+        font-size: 0.8rem; /* Slightly smaller text to fit more items */
     }
     
     .nav-links::-webkit-scrollbar {
