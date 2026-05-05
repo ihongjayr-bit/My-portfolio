@@ -524,20 +524,24 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 @media (max-width: 768px) {
     /* 1. Navbar Adjustments */
     .navbar {
-        /* Switch to flex to stop the grid from squishing items */
-        display: flex !important; 
-        justify-content: flex-start; /* Start items from the left */
-        width: 95%;
-        padding: 10px;
-        overflow: hidden; /* Keep the navbar neat */
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        width: 98%; /* Slightly wider to fit more items */
+        padding: 8px 12px;
+        gap: 5px;
     }
 
-    .logo-link {
-        flex: 0 0 auto; /* Don't let the logo grow or shrink */
-        margin-right: 15px;
-        z-index: 1001; /* Keep it above the scrolling links */
+   .logo-link {
+        flex: 0 0 auto; /* Keeps the logo size constant */
+        max-width: 110px; /* Limits the logo's reach */
+        overflow: hidden;
     }
 
+    .logo {
+        font-size: 1rem;
+
+    }
 
     .nav-links::-webkit-scrollbar {
         display: none;
@@ -545,24 +549,24 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
     .nav-links {
         display: flex !important;
-        flex-direction: row !important;
-        list-style: none;
-        overflow-x: auto; /* Enable the horizontal swipe */
-        white-space: nowrap; /* Force all buttons onto one line */
-        gap: 10px;
+        flex: 1; /* Tells the links to take all the leftover space */
+        overflow-x: auto !important; /* Enable the horizontal swipe */
+        white-space: nowrap; /* Keep buttons on one line */
+        gap: 5px;
         padding: 5px 0;
-        -webkit-overflow-scrolling: touch;
-        flex: 1; /* Take the remaining space */
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
     }
 
     .nav-item {
-        display: inline-block !important;
-        flex: 0 0 auto !important; 
-        padding: 8px 15px;
-        font-size: 0.9rem;
+        flex: 0 0 auto !important; /* Forces the browser to show the full text */
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        background-color: rgba(255, 255, 255, 0.05); /* Added for better visibility */
     }
 
-    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for Chrome/Safari */
+    }
     .nav-spacer { display: none; }
 
     /* 2. Hero Section (Stacks vertically on phones) */
@@ -573,8 +577,10 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
         padding: 20px;
         gap: 20px;
     }
+
     .hero-text h1 { font-size: 2.5rem; }
     .dev { font-size: 40px; }
+
     .orange-circle {
         width: 200px;
         height: 200px;
@@ -596,6 +602,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
         align-items: center;
         gap: 15px;
     }
+
     .preview-box {
         width: 100%;
         max-width: 300px;
