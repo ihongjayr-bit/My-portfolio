@@ -525,17 +525,20 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     /* 1. Navbar Adjustments */
     .navbar {
         display: flex !important;
+        flex-direction: row !important; /* Forces items to stay side-by-side */
+        justify-content: flex-start; 
         align-items: center;
         width: 98%;
-        padding: 6px 12px; /* Tighter vertical padding */
-        border-radius: 40px; /* Keep the navbar pill shape */
+        padding: 6px 12px;
+        overflow: hidden; /* Keeps the outer pill shape clean */
     }
 
    .logo-link {
         display: flex;
         flex-direction: column;
-        line-height: 0.8; 
-        margin-right: 10px;
+        line-height: 0.8;
+        flex: 0 0 auto; /* Essential: prevents logo from growing */
+        margin-right: 12px;
     }
 
     .logo { font-size: 0.9rem !important; }
@@ -546,17 +549,21 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
     .nav-links {
         display: flex !important;
-        gap: 6px; /* Space between the pills */
+        flex-direction: row !important;
+        flex: 1; /* Occupies all remaining horizontal space */
+        overflow-x: auto !important; /* The magic for swiping */
+        white-space: nowrap; /* Prevents links from dropping to a second line[cite: 8] */
+        gap: 6px; 
         padding: 4px 0;
-        align-items: center;
+        scrollbar-width: none; /* Hides scrollbar on Firefox */
+        -webkit-overflow-scrolling: touch; /* Smooth swiping on mobile[cite: 8] */
     }
 
     .nav-item {
-        padding: 6px 12px !important; /* Smaller internal padding for mobile */
-        font-size: 0.75rem; /* Slightly smaller text for better fit */
-        border-radius: 20px !important; /* Ensures the pill shape is sharp */
-        display: inline-block;
-        white-space: nowrap;
+        flex: 0 0 auto !important; /* Forces each link to stay its full width[cite: 8] */
+        padding: 6px 14px !important;
+        font-size: 0.8rem;
+        border-radius: 20px !important;
     }
 
     .nav-item.active {
