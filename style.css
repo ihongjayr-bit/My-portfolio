@@ -524,17 +524,18 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 @media (max-width: 768px) {
     /* 1. Navbar Adjustments */
     .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        /* Switch to flex to stop the grid from squishing items */
+        display: flex !important; 
+        justify-content: flex-start; /* Start items from the left */
         width: 95%;
-        padding: 10px 15px;
-        top: 10px; /* Moves it slightly up for more screen space */
+        padding: 10px;
+        overflow: hidden; /* Keep the navbar neat */
     }
 
     .logo-link {
-        flex: 0 0 auto;
-        margin-right: 10px;
+        flex: 0 0 auto; /* Don't let the logo grow or shrink */
+        margin-right: 15px;
+        z-index: 1001; /* Keep it above the scrolling links */
     }
 
 
@@ -543,26 +544,26 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     }
 
     .nav-links {
-        display: flex;
-        overflow-x: auto; /* Enables horizontal swiping */
-        white-space: nowrap; /* Keeps items in one single line */
-        gap: 8px;
-        flex: 1; /* Takes up the rest of the bar */
-        scrollbar-width: none; /* Hides scrollbar on Firefox */
-        -ms-overflow-style: none; /* Hides scrollbar on IE/Edge */
+        display: flex !important;
+        flex-direction: row !important;
+        list-style: none;
+        overflow-x: auto; /* Enable the horizontal swipe */
+        white-space: nowrap; /* Force all buttons onto one line */
+        gap: 10px;
         padding: 5px 0;
+        -webkit-overflow-scrolling: touch;
+        flex: 1; /* Take the remaining space */
     }
 
     .nav-item {
-        flex: 0 0 auto; /* This prevents "About" from disappearing */
-        padding: 8px 12px;
-        font-size: 0.85rem;
+        display: inline-block !important;
+        flex: 0 0 auto !important; 
+        padding: 8px 15px;
+        font-size: 0.9rem;
     }
 
-
-   .nav-spacer {
-        display: none;
-    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-spacer { display: none; }
 
     /* 2. Hero Section (Stacks vertically on phones) */
     .hero-container {
