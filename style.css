@@ -554,14 +554,14 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
         flex: 1;
         overflow-x: auto !important; /* Keep the horizontal scroll */
         white-space: nowrap;
-        gap: 4px; /* Lowered spacing between nav items */
+        gap: 2px; /* Lowered spacing between nav items */
         scrollbar-width: none;
-        padding: 5px 0;
+        padding: 8px 0;
     }
 
     .nav-item {
         flex: 0 0 auto !important; 
-        padding: 6px 8px; /* Reduced horizontal padding for tighter spacing */
+        padding: 4px 4px; /* Reduced horizontal padding for tighter spacing */
         font-size: 0.8rem; /* Slightly smaller text to fit more items */
     }
     
