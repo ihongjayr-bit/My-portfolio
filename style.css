@@ -2,62 +2,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
 
-@media (max-width: 768px) {
-    /* 1. Navbar Adjustments */
-    .navbar {
-        width: 95%;
-        padding: 10px 15px;
-        grid-template-columns: auto 1fr; /* Simplifies grid for small screens */
-    }
-    .nav-links {
-        gap: 5px;
-    }
-    .nav-item {
-        padding: 6px 10px;
-        font-size: 0.8rem;
-    }
-    .nav-spacer { display: none; }
-
-    /* 2. Hero Section (Stacks vertically on phones) */
-    .hero-container {
-        flex-direction: column-reverse; 
-        text-align: center;
-        width: 90%;
-        padding: 20px;
-        gap: 20px;
-    }
-    .hero-text h1 { font-size: 2.5rem; }
-    .dev { font-size: 40px; }
-    .orange-circle {
-        width: 200px;
-        height: 200px;
-    }
-
-    /* 3. Section Sizing */
-    .content-card {
-        width: 90%;
-        padding: 30px;
-        font-size: 1.1rem;
-    }
-
-    /* 4. Background Text (Scales down for mobile) */
-    .bg-text {
-        font-size: 22vw; 
-    }
-
-    /* 5. Project Grid (Vertical list for phones) */
-    .project-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-    .preview-box {
-        width: 100%;
-        max-width: 300px;
-        height: 350px;
-    }
-}
-
 /* NAVBAR WITH CENTERED LINKS */
 .navbar {
     position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
@@ -574,4 +518,72 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 .content-card p {
     color: #fff;
     line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    /* 1. Navbar Adjustments */
+    .navbar {
+        width: 95%;
+        padding: 10px 15px;
+        grid-template-columns: auto 1fr;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none; /* Hides scrollbar on Chrome/Safari for a cleaner look[cite: 6] */
+    }
+
+    .nav-links {
+        display: flex;
+        overflow-x: auto; /* Enables horizontal scroll */
+        white-space: nowrap; /* Prevents items from wrapping to a new line */
+        gap: 15px;
+        padding: 5px 0;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS[cite: 6] */
+        scrollbar-width: none;
+    }
+    .nav-item {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        flex: 0 0 auto;
+    }
+    .nav-spacer { display: none; }
+
+    /* 2. Hero Section (Stacks vertically on phones) */
+    .hero-container {
+        flex-direction: column-reverse; 
+        text-align: center;
+        width: 90%;
+        padding: 20px;
+        gap: 20px;
+    }
+    .hero-text h1 { font-size: 2.5rem; }
+    .dev { font-size: 40px; }
+    .orange-circle {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* 3. Section Sizing */
+    .content-card {
+        width: 90%;
+        padding: 30px;
+        font-size: 1.1rem;
+    }
+
+    /* 4. Background Text (Scales down for mobile) */
+    .bg-text {
+        font-size: 22vw; 
+    }
+
+    /* 5. Project Grid (Vertical list for phones) */
+    .project-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .preview-box {
+        width: 100%;
+        max-width: 300px;
+        height: 350px;
+    }
 }
