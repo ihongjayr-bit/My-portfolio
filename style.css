@@ -92,11 +92,6 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     font-family: monospace; 
 }
 
-.orange-circle { 
-    width: 380px; height: 
-    380px; background: #ff9d00; 
-    border-radius: 50%; 
-}
 
 .resume-btn {
     background: #ff9d00;
@@ -391,10 +386,21 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     font-family: monospace; 
 }
 
-.orange-circle { 
-    width: 380px; height: 
-    380px; background: #ff9d00; 
-    border-radius: 50%; 
+.orange-circle {
+    width: 380px;
+    height: 380px;
+    background: #ff9d00 url('profile.png') no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    
+    /* Glowing Effect */
+    box-shadow: 0 0 20px rgba(255, 157, 0, 0.6), 
+                0 0 40px rgba(255, 157, 0, 0.4), 
+                0 0 60px rgba(255, 157, 0, 0.2);
+                
+    /* Optional: Subtle breathing animation */
+    animation: glowPulse 3s infinite ease-in-out;
 }
 
 .resume-btn {
@@ -461,6 +467,10 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     transition: all 1.2s ease;
     pointer-events: none;
     white-space: nowrap;
+}
+
+#experience .bg-text {
+    font-size: 16vw; /* Slightly smaller so the long word fits the edges */
 }
 
 .dev{
@@ -576,7 +586,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     position: absolute; /* Takes it out of the layout flow */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     /* 1. Navbar Adjustments */
     .nav-links {
         position: fixed;
@@ -668,6 +678,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     }
 
    .nav-item {
+        font-weight: bold;
         font-size: 1rem !important;
         padding: 12px 20px !important; /* Vertical padding only */
         width: 85%; /* The pill width */
@@ -705,8 +716,10 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     .dev { font-size: 40px; }
 
     .orange-circle {
-        width: 200px;
+        width: 200px; /* Keep your existing size */
         height: 200px;
+        box-shadow: 0 0 15px rgba(255, 157, 0, 0.6), 
+                    0 0 30px rgba(255, 157, 0, 0.4);
     }
 
     .content-card {
