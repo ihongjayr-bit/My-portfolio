@@ -521,6 +521,13 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     line-height: 1.6;
 }
 
+#menu-toggle, .hamburger {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute; /* Takes it out of the layout flow */
+}
+
 @media (max-width: 768px) {
     /* 1. Navbar Adjustments */
     .navbar {
@@ -549,9 +556,10 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     #menu-toggle:checked ~ .hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     .hamburger {
-        grid-column: 3;
-        justify-self: end;
-        display: flex;
+        display: flex; /* Changed from none to flex */
+        visibility: visible;
+        opacity: 1;
+        position: relative;
         flex-direction: column;
         gap: 5px;
         cursor: pointer;
@@ -581,16 +589,17 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 20px;
         transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
         z-index: 1000;
         backdrop-filter: blur(15px);
     }
 
     .nav-item {
-        font-size: 1.8rem;
-        background: none !important;
-        color: white !important;
+       font-size: 1.1rem !important; /* Smaller, cleaner font size */
+        padding: 10px 20px !important;
+        letter-spacing: 1px; /* Adds a professional touch */
+        text-transform: uppercase;
     }
 
     .nav-item.active {
