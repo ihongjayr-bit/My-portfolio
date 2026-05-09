@@ -531,17 +531,19 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 @media (max-width: 768px) {
     /* 1. Navbar Adjustments */
     .navbar {
-        display: flex !important;
-        justify-content: space-between;
+        display: grid !important;
+        /* Creates space: Left (Logo) | Center (Empty) | Right (Hamburger) */
+        grid-template-columns: auto 1fr auto !important; 
+        padding: 10px 20px !important;
+        width: 95% !important;
         align-items: center;
-        z-index: 2000 !important; /* Higher than the menu drawer */
-        pointer-events: auto;
+        z-index: 2000;
     }
 
    .logo-link {
-        position: relative;
-        z-index: 2001; 
-        margin: 0 auto;
+        grid-column: 1; /* Fixed to the left */
+        justify-self: start;
+        z-index: 2001;
     }
 
     .logo { font-size: 0.9rem !important; }
@@ -550,7 +552,6 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
     #menu-toggle:checked ~ .nav-links {
         right: 0;
-        pointer-events: auto;
     }
 
     #menu-toggle:checked ~ .hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
@@ -558,19 +559,20 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     #menu-toggle:checked ~ .hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     .hamburger {
-        position: absolute;
-        right: 20px;
-        z-index: 2001;
+        grid-column: 3; /* Fixed to the right */
+        justify-self: end;
         display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 2001;
     }
 
     .hamburger span {
-        display: block;
         width: 25px;
         height: 3px;
         background: white;
         border-radius: 3px;
-        transition: 0.3s;
     }
 
     .nav-links::-webkit-scrollbar {
@@ -581,30 +583,29 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
         position: fixed;
         top: 0;
         right: -100%; 
-        width: 65%; /* Smaller width so it doesn't feel huge */
+        width: 60%; /* Reduced width for a smaller feel */
         height: 100vh;
         background: rgba(0, 0, 0, 0.95);
         backdrop-filter: blur(10px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 20px; /* Smaller gap between items */
+        gap: 25px; /* Tighter list spacing */
         transition: 0.4s ease-in-out;
         z-index: 1000;
-        pointer-events: none; /* Prevents it from blocking clicks when hidden */
     }
 
     .nav-item {
-        font-size: 1rem !important; /* Small and professional */
-        padding: 10px 15px !important;
-        text-transform: uppercase;
+        font-size: 0.95rem !important; /* Smaller text size */
+        padding: 8px 15px !important;
         letter-spacing: 1px;
+        background: transparent !important; /* Remove background by default */
     }
 
     .nav-item.active {
         background-color: #ff9d00 !important;
         color: #000 !important;
-        box-shadow: 0 2px 8px rgba(255, 157, 0, 0.3); /* Adds a subtle glow */
+        border-radius: 20px;
     }
 
     .nav-links::-webkit-scrollbar {
