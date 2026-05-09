@@ -532,26 +532,26 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     /* 1. Navbar Adjustments */
     .navbar {
         display: grid !important;
-        /* Creates space: Left (Logo) | Center (Empty) | Right (Hamburger) */
-        grid-template-columns: auto 1fr auto !important; 
-        padding: 10px 20px !important;
-        width: 95% !important;
+        grid-template-columns: 1fr auto 1fr !important; 
         align-items: center;
+        width: 95% !important;
+        padding: 10px 15px !important;
         z-index: 2000;
     }
 
    .logo-link {
-        grid-column: 1; /* Fixed to the left */
-        justify-self: start;
+        grid-column: 2;
+        justify-self: center;
         z-index: 2001;
     }
 
     .logo { font-size: 0.9rem !important; }
 
-    #menu-toggle { display: none; }
+    #menu-toggle { display: none !important; }
 
     #menu-toggle:checked ~ .nav-links {
-        right: 0;
+        right: 0 !important;
+        pointer-events: auto;
     }
 
     #menu-toggle:checked ~ .hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
@@ -559,20 +559,22 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     #menu-toggle:checked ~ .hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     .hamburger {
-        grid-column: 3; /* Fixed to the right */
+        grid-column: 3;
         justify-self: end;
-        display: flex;
+        display: flex !important; /* Forces it to show */
         flex-direction: column;
-        gap: 5px;
+        gap: 4px;
         cursor: pointer;
         z-index: 2001;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     .hamburger span {
-        width: 25px;
-        height: 3px;
+        display: block;
+        width: 22px;
+        height: 2px;
         background: white;
-        border-radius: 3px;
     }
 
     .nav-links::-webkit-scrollbar {
@@ -582,24 +584,22 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%; 
-        width: 60%; /* Reduced width for a smaller feel */
+        right: -100%; /* Start off-screen */
+        width: 60%; 
         height: 100vh;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.98);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 25px; /* Tighter list spacing */
+        gap: 20px;
         transition: 0.4s ease-in-out;
         z-index: 1000;
+        pointer-events: none;
     }
 
-    .nav-item {
-        font-size: 0.95rem !important; /* Smaller text size */
-        padding: 8px 15px !important;
-        letter-spacing: 1px;
-        background: transparent !important; /* Remove background by default */
+   .nav-item {
+        font-size: 0.9rem !important;
+        padding: 8px 12px !important;
     }
 
     .nav-item.active {
