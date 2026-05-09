@@ -530,16 +530,24 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
 @media (max-width: 768px) {
     /* 1. Navbar Adjustments */
-    .navbar {
-        display: grid !important;
-        /* auto (spacer) | auto (centered logo) | 1fr (hamburger space) */
-        grid-template-columns: 1fr auto 1fr !important; 
+    .nav-links {
+        position: fixed;
+        top: 80px; /* Position it just below the navbar */
+        right: -100%; 
+        width: 180px; /* Make it narrow */
+        height: 50px; /* THE FIX: Let it fit the content, not the whole screen */
+        padding: 20px 0; /* Add some padding top/bottom */
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px; /* Round the corners to match your design */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        /* Push the content away from the "barrier" */
-        padding: 10px 25px !important; 
-        width: 92% !important;
-        max-width: 400px;
-        z-index: 2000;
+        gap: 15px; /* Tighter spacing between links */
+        transition: 0.4s ease-in-out;
+        z-index: 1000;
+        pointer-events: none;
     }
 
    .logo-link {
@@ -554,7 +562,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     #menu-toggle { display: none !important; }
 
     #menu-toggle:checked ~ .nav-links {
-        right: 0 !important;
+        right: 20px; 
         pointer-events: auto;
     }
 
@@ -590,27 +598,35 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
     .nav-links {
         position: fixed;
-        top: 0;
+        /* Position it right under your navbar */
+        top: 85px; 
         right: -100%; 
-        width: 55%; /* Compact width */
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.98);
+        
+        /* THE FIX: Small width and automatic height */
+        width: 150px; 
+        height: auto; 
+        
+        /* Compact styling */
+        padding: 20px 10px;
+        background: rgba(0, 0, 0, 0.95);
         backdrop-filter: blur(15px);
+        border-radius: 20px; /* Makes it a small floating card */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        gap: 20px;
+        gap: 15px; /* Tighter spacing between links */
         transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1000;
-        /* CRITICAL: Allows clicking the logo when menu is closed */
         pointer-events: none;
     }
 
    .nav-item {
-        font-size: 0.85rem !important;
-        padding: 8px 12px !important;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        font-size: 0.8rem !important; /* Smaller text to fit the slim width */
+        padding: 10px 0 !important;
+        width: 100%;
+        text-align: center;
     }
 
     .nav-item.active {
