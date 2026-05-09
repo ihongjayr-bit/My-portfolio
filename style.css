@@ -717,7 +717,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
     /* 4. Background Text (Scales down for mobile) */
     .bg-text {
-        font-size: 22vw; 
+        font-size: 15vw; /* Responsive font size */
     }
 
     .project-grid {
