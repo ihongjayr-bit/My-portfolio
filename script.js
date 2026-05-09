@@ -1,6 +1,41 @@
 const navLinks = document.querySelectorAll('.nav-item');
 const logoTrigger = document.getElementById('logo-trigger');
 const revealElements = document.querySelectorAll('.reveal');
+const skillBtn = document.getElementById('go-to-skills');
+const backBtn = document.getElementById('go-to-about');
+const aboutRoot = document.querySelector('.horizontal-root');
+const sections = document.querySelectorAll('section');
+const menuToggle = document.getElementById('menu-toggle');
+
+if (skillBtn && aboutRoot) {
+    skillBtn.addEventListener('click', () => {
+        // Scrolls the horizontal container to the width of one slide
+        const slideWidth = document.querySelector('.slide').offsetWidth;
+        aboutRoot.scrollTo({
+            left: slideWidth,
+            behavior: 'smooth'
+        });
+    });
+}
+
+if (backBtn && aboutRoot) {
+    backBtn.addEventListener('click', () => {
+        // Scrolls the horizontal container back to the start (0)
+        aboutRoot.scrollTo({
+            left: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+const resetObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        // If the user scrolls away from the About section entirely
+        if (!entry.isIntersecting) {
+            aboutRoot.scrollTo({ left: 0 }); 
+        }
+    });
+}, { threshold: 0.1 });
 
 if (logoTrigger) {
     logoTrigger.addEventListener('click', () => {
@@ -25,8 +60,46 @@ navLinks.forEach(link => {
     link.addEventListener('mousedown', function() {
         navLinks.forEach(n => n.classList.remove('active'));
         this.classList.add('active');
-        triggerAnimation(this.getAttribute('href'));
     });
+});
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (menuToggle) menuToggle.checked = false;
+    });
+});
+
+const scrollOptions = {
+    threshold: 0.6, // Highlight when 60% of the section is visible
+    rootMargin: "0px"
+};
+
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Get the id of the section in view
+            const id = entry.target.getAttribute('id');
+            
+            // Remove active class from all links
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Add active class if the href matches the section id
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Re-trigger the reveal animation
+            entry.target.classList.add('active');
+        } else {
+            // Optional: remove reveal class when leaving (keeps it clean)
+            entry.target.classList.remove('active');
+        }
+    });
+}, scrollOptions);
+
+sections.forEach(section => {
+    scrollObserver.observe(section);
 });
 
 // 3. Intersection Observer (Scroll behavior)
@@ -41,3 +114,4 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 revealElements.forEach(el => revealObserver.observe(el));
+resetObserver.observe(aboutRoot);

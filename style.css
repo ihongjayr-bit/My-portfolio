@@ -110,12 +110,12 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
 /* HORIZONTAL SCROLL ANIMATION */
 .horizontal-root {
-    width: 100vw;
-    height: 100vh;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    overflow-x: auto; /* Allows the scrollTo script to work */
+    display: flex;
+    scroll-snap-type: x mandatory; /* Keeps slides snappy */
 }
-.horizontal-root::-webkit-scrollbar {background:scroll}
+
+.horizontal-root::-webkit-scrollbar {display: none;}
 
 .horizontal-wrapper {
     display: flex;
@@ -123,13 +123,44 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 }
 
 .slide {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 0 0 100vw; /* Each slide takes full screen width */
     scroll-snap-align: start;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-btn {
+    margin-top: 20px;
+    background: #ff9d00;
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.about-btn:hover {
+    transform: scale(1.1);
+}
+
+.skill-btn {
+    margin-top: 20px;
+    background: #ff9d00;
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.skill-btn:hover {
+    transform: scale(1.1);
 }
 
 /* CARDS & TEXT */
@@ -176,6 +207,16 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 .slide, .page-section {
     position: relative;
     overflow: hidden;
+}
+
+.horizontal-root {
+    overflow-x: auto; /* Allows the scrollTo script to work */
+    display: flex;
+    scroll-snap-type: x mandatory; /* Keeps slides snappy */
+}
+
+.horizontal-root::-webkit-scrollbar {
+    display: none;
 }
 
 /* PROJECTS SECTION */
@@ -433,6 +474,14 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 .active .bg-text {
     color: rgba(255, 255, 255, 0.97); /* Fades in when active */
     transform: translate(-50%, -55%); /* Moves to center */
+}
+
+.page-section {
+    min-height: 100vh; /* Ensures the section fills the screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Ensure the slides are 'relative' so the bg-text knows where to center */
