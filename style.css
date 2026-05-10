@@ -442,6 +442,9 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 }
 
 .resume-btn {
+    display: inline-block; /* Essential for anchors to respect padding/width */
+    text-decoration: none; /* Removes the default underline */
+    text-align: center;
     background: #ff9d00;
     border: none;
     padding: 12px 30px;
@@ -449,6 +452,8 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     cursor: pointer;
     font-weight: bold;
     margin-top: 20px;
+    color: #000;
+    text-decoration: none;
 }
 
 /* HORIZONTAL SCROLL ANIMATION */
