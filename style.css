@@ -549,7 +549,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 }
 
 .project-grid { display: flex; gap: 20px; }
-.preview-box { width: 320px; height: 480px; }
+.preview-box { width: 320px; height: 380px; }
 
 /* NEW REVEAL ANIMATIONS */
 /* Ensure the starting state is always hidden and slightly down */
