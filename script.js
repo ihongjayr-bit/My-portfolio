@@ -131,9 +131,9 @@ if (feedbackForm) {
         const body = encodeURIComponent(`From: ${email}\n\nMessage:\n${message}`);
 
         // Redirects user to their email client
-        window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+       const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${subject}&body=${body}`;
+        window.open(gmailUrl, '_blank');
     });
-
 }
 
 revealElements.forEach(el => revealObserver.observe(el));
