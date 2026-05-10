@@ -113,5 +113,28 @@ const revealObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.15 });
 
+const feedbackForm = document.getElementById('feedback-form');
+
+if (feedbackForm) {
+    feedbackForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        alert("Form submitted!");
+
+        const email = document.getElementById('user-email').value;
+        const message = document.getElementById('user-message').value;
+        
+        // Replace this with your actual email address
+        const myEmail = "ihongjayr@gmail.com"; 
+        
+        const subject = encodeURIComponent("Portfolio Feedback/Collaboration");
+        const body = encodeURIComponent(`From: ${email}\n\nMessage:\n${message}`);
+
+        // Redirects user to their email client
+        window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+    });
+
+}
+
 revealElements.forEach(el => revealObserver.observe(el));
 resetObserver.observe(aboutRoot);

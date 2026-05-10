@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IHONG J.R. | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -57,7 +58,7 @@
         </div> <div class="slide reveal" id="slide-skills">
             <h1 class="bg-text"><span class="yellow-text">S</span>KILLS</h1>
             <div class="glass-card content-card">
-                <p>Proficient in Python, Java, CSS, and C++.</p>
+                <p>Proficient in: <span style="font-weight: bold; color: rgb(255, 140, 0);"><br>Python,<br> Java,<br> CSS,<br> and C++</span>.</p>
             </div>
             <button class="about-btn" id="go-to-about">Click to go back</button>
         </div> </div> </section>
@@ -65,7 +66,12 @@
         <section id="experience" class="page-section reveal">
             <h1 class="bg-text"><span class="yellow-text">E</span>XPERIENCE</h1>
             <div class="project-content">
-                    <div class="glass-card preview-box"><p><b>Game Developer Intern</b><br>Opol Community College<br>2023 - Present</p></div>
+                    <div class="glass-card content-card"><p><b>Game Developer Intern</b><br>Opol Community College<br>2023 - Present</p>
+                        <br>
+                    <p><b>Welder and Fabricator (on call)</b><br>Big M Car Display<br>2019 - Present</p>
+                    <br>
+                    <p><b>Full-stack & Backend Developer</b><br>Opol Community College<br>2019 - Present</p>
+                    </div>
             </div>
         </section>
 
@@ -77,18 +83,38 @@
                     <b>Download <span class="yellow-text">here</span></a>
                 </div>
                 <div class="project-grid">
-                    <div class="glass-card preview-box"></div>
+                    <div class="glass-card preview-box" style="background-image: url('preview.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="page-section reveal">
-            <h1 class="bg-text"><span class="yellow-text">C</span>ONTACT</h1>
-            <div class="glass-card content-card">
-                <p>Let's collaborate on your next project.</p>
+    <section id="contact" class="page-section reveal">
+        <h1 class="bg-text"><span class="yellow-text">C</span>ONTACT</h1>
+    
+            <h2 class="collab-text">Interested?<br><span class="yellow-text"> Let's Collaborate!</span></h2>
+
+            <div class="glass-card content-card contact-form-container">
+                    <form id="feedback-form">
+            <div class="form-group">
+                <input type="email" id="user-email" placeholder="Your Email" required>
             </div>
-        </section>
+            <div class="form-group">
+                <textarea id="user-message" rows="5" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="resume-btn">Send Message</button>
+        </form>
+    </div>
+    </section>
     </main>
+
+    <footer class="footer">
+        <div class="social-links">
+        <a href="https://facebook.com/yoshi.ihong" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+        <a href="https://github.com/ihongjayr-bit" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/ar.jayi/?__pwa=1" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+    </div>
+        <p>Designed & Built by <b>Jay-r Ihong</b> | May 2026</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
