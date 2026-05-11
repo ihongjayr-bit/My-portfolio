@@ -252,7 +252,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 .bg-text {
     position: absolute;
     font-size: 18vw;
-    font-weight: 900;
+    font-weight: 300;
     color: rgba(255, 255, 255, 0); /* Start hidden */
     z-index: -1;
     text-transform: uppercase;
@@ -503,7 +503,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     left: 50%;
     transform: translate(-50%, -40%); /* Slightly lower to start */
     font-size: 18vw;
-    font-weight: 900;
+    font-weight: 300;
     color: rgb(255, 255, 255, 0); /* Hidden by default */
     z-index: -1;
     text-transform: uppercase;
@@ -521,6 +521,10 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 }
 
 .yellow-text{
+    color: #a1690d;
+}
+
+.collab{
     color: #ff9d00;
 }
 
@@ -589,7 +593,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 }
 
 .active .bg-text {
-    color: rgb(255, 255, 255); /* Fade in slowly */
+    color: rgb(167, 164, 164); /* Fade in slowly */
 }
 
 /* Button Hover Animation */
