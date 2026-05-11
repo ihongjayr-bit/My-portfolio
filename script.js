@@ -138,3 +138,26 @@ if (feedbackForm) {
 
 revealElements.forEach(el => revealObserver.observe(el));
 resetObserver.observe(aboutRoot);
+
+// BACK TO TOP BUTTON
+const backToTopBtn = document.getElementById('back-to-top');
+const homeSection = document.getElementById('home');
+
+function updateBackToTop() {
+    if (!backToTopBtn || !homeSection) return;
+    const homeBottom = homeSection.getBoundingClientRect().bottom;
+    // Show only when #home has fully scrolled out of view
+    if (homeBottom <= 0) {
+        backToTopBtn.classList.add('visible');
+    } else {
+        backToTopBtn.classList.remove('visible');
+    }
+}
+
+window.addEventListener('scroll', updateBackToTop, { passive: true });
+
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}

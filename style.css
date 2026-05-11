@@ -1,8 +1,7 @@
-/* BASE RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
 
-/* NAVBAR WITH CENTERED LINKS */
+/* NAVBAR */
 .navbar {
     position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
     width: 90%; max-width: 1100px; display: grid;
@@ -18,9 +17,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     justify-self: start;
     transition: transform 0.2s ease;
 }
-
 .logo-link:hover { transform: scale(1.05); }
-
 .logo { font-weight: bold; font-size: 1.2rem; color: #fff; }
 .logo span { color: #ff9d00; }
 
@@ -33,9 +30,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     overflow: visible;
 }
 
-.nav-spacer {
-    grid-column: 3;
-}
+.nav-spacer { grid-column: 3; }
 
 /* NAVIGATION ITEMS */
 .nav-item {
@@ -45,22 +40,25 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     border-radius: 25px;
     transition: background-color 0.3s ease;
 }
+.nav-item:hover { background-color: rgba(255, 157, 0, 0.3); }
+.nav-item.active { background-color: #ff9d00 !important; color: #000 !important; transition: none !important; }
 
-.nav-item:hover {
-    background-color: rgba(255, 157, 0, 0.3);
-}
-
-/* INSTANT SNAP ANIMATION FOR CLICK */
-.nav-item.active { 
-    background-color: #ff9d00 !important; color: #000 !important; transition: none !important; }
-
-/* HERO SECTION */
 /* SECTION LAYOUTS */
 .page-section, .slide {
-    height: 100vh; display: flex; justify-content: center; 
-    align-items: center; position: relative; overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
+.page-section {
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* HERO */
 .hero-container {
     display: flex;
     width: 85%;
@@ -68,18 +66,15 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     align-items: center;
     padding: 60px;
 }
+.hero-text h1 { font-size: 4.5rem; margin: 15px 0; }
 
-.hero-text h1 { 
-    font-size: 4.5rem; 
-    margin: 15px 0; 
-}
+.name { font-size: 20px; color: #ff9d00; }
+.dev { font-size: 100px; }
+.red-icon { color: #ff4d4d; font-family: monospace; text-shadow: 0 0 10px rgba(255, 77, 77, 0.5); }
+.yellow-text { color: #ff9d00be; }
+.collab { color: #ff9d00; }
 
-.name{
-    font-size: 20px;
-    color: #ff9d00;
-}
-
-.dl{
+.dl {
     display: flex;
     justify-content: center;
     font-size: 30px;
@@ -87,13 +82,30 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     color: white;
 }
 
-.red-icon { 
-    color: #ff4d4d; 
-    font-family: monospace; 
+/* ORANGE CIRCLE / PROFILE */
+.orange-circle {
+    width: 380px;
+    height: 380px;
+    background: #ff9d00 url('profile.png') no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 157, 0, 0.6), 
+                0 0 40px rgba(255, 157, 0, 0.4), 
+                0 0 60px rgba(255, 157, 0, 0.2);
+    animation: glowPulse 3s infinite ease-in-out;
 }
 
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 157, 0, 0.6), 0 0 40px rgba(255, 157, 0, 0.4); }
+    50%       { box-shadow: 0 0 30px rgba(255, 157, 0, 0.9), 0 0 60px rgba(255, 157, 0, 0.6); }
+}
 
+/* RESUME BUTTON */
 .resume-btn {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
     background: #ff9d00;
     border: none;
     padding: 12px 30px;
@@ -101,16 +113,42 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     cursor: pointer;
     font-weight: bold;
     margin-top: 20px;
+    color: #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.resume-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 157, 0, 0.4);
 }
 
-/* HORIZONTAL SCROLL ANIMATION */
-.horizontal-root {
-    overflow-x: auto; /* Allows the scrollTo script to work */
+/*ABOUT*/
+.about-container {
     display: flex;
-    scroll-snap-type: x mandatory; /* Keeps slides snappy */
+    flex-direction: row; /* Aligns items horizontally */
+    justify-content: center; /* Centers cards horizontally */
+    align-items: stretch; /* Ensures cards are the same height */
+    gap: 20px; /* Adds space between the two cards */
+    width: 100%;
+    max-width: 1200px; /* Adjust based on your design */
+    margin: 0 auto;
+    z-index: 2; /* Ensures it stays above the "ABOUT" background text */
 }
 
-.horizontal-root::-webkit-scrollbar {display: none;}
+/* Ensure individual cards don't take up the full width anymore */
+.about-card {
+    flex: 1; /* Makes both cards equal width */
+    margin: 0; /* Let the 'gap' property handle spacing */
+}
+
+/* HORIZONTAL SCROLL (ABOUT / SKILLS) */
+.horizontal-root {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+}
+.horizontal-root::-webkit-scrollbar { display: none; }
 
 .horizontal-wrapper {
     display: flex;
@@ -118,15 +156,19 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 }
 
 .slide {
-    flex: 0 0 100vw; /* Each slide takes full screen width */
-    scroll-snap-align: start;
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    scroll-snap-align: start;
+    position: relative;
 }
 
-.about-btn {
+/* ABOUT / SKILLS BUTTONS */
+.about-btn, .skill-btn {
     margin-top: 20px;
     background: #ff9d00;
     color: #000;
@@ -135,30 +177,11 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     border-radius: 30px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: transform 0.3s ease;
 }
+.about-btn:hover, .skill-btn:hover { transform: scale(1.1); }
 
-.about-btn:hover {
-    transform: scale(1.1);
-}
-
-.skill-btn {
-    margin-top: 20px;
-    background: #ff9d00;
-    color: #000;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.skill-btn:hover {
-    transform: scale(1.1);
-}
-
-/* CARDS & TEXT */
+/* CARDS */
 .glass-card {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(25px);
@@ -173,48 +196,44 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     text-align: center;
     font-size: 1.4rem;
 }
+.content-card p { color: #fff; line-height: 1.6; }
 
-/* THE BACKGROUND TEXT LABELS */
+/* BACKGROUND TEXT LABELS */
 .bg-text {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Keeps it perfectly centered */
-    width: 100%;
-    text-align: center;
+    transform: translate(-50%, -40%);
+    font-size: 18vw;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0);
+    z-index: -1;
+    text-transform: uppercase;
+    transition: color 1.5s ease, transform 1.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
 }
-
-
-.dev{
-    font-size: 100px;
-}
-
-.yellow-text{
-    color: #ff9d00;
-}
-
 .active .bg-text {
-    color: rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -50%) scale(1.1); 
+    color: rgba(255, 255, 255, 0.799);
+    transform: translate(-50%, -55%);
 }
 
-/* Ensure the slides are 'relative' so the bg-text knows where to center */
-.slide, .page-section {
-    position: relative;
-    overflow: hidden;
+#experience .bg-text { font-size: 16vw; }
+
+/* REVEAL ANIMATIONS */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    visibility: hidden;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
 }
 
-.horizontal-root {
-    overflow-x: auto; /* Allows the scrollTo script to work */
-    display: flex;
-    scroll-snap-type: x mandatory; /* Keeps slides snappy */
-}
-
-.horizontal-root::-webkit-scrollbar {
-    display: none;
-}
-
-/* PROJECTS SECTION */
+/* PROJECTS */
 .github-pill {
     background: rgba(255, 255, 255, 0.05);
     padding: 15px 40px;
@@ -223,72 +242,21 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     margin-bottom: 30px;
     color: #aaa;
 }
-
+.project-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .project-grid { display: flex; gap: 20px; }
-.preview-box { width: 320px; height: 480px; }
+.preview-box { width: 320px; height: 380px; }
 
-/* NEW REVEAL ANIMATIONS */
-/* Ensure the starting state is always hidden and slightly down */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    visibility: hidden;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-}
-
-/* Red Icon glow effect */
-.red-icon { 
-    color: #ff4d4d; 
-    text-shadow: 0 0 10px rgba(255, 77, 77, 0.5); 
-}
-
-/* Smooth background text reveal */
-.bg-text {
-    position: absolute;
-    font-size: 18vw;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0); /* Start hidden */
-    z-index: -1;
-    text-transform: uppercase;
-    transition: color 1.5s ease;
-}
-
-.active .bg-text {
-    color: rgb(255, 255, 255); /* Fade in slowly */
-}
-
-/* Button Hover Animation */
-.resume-btn {
-    background: #ff9d00;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.resume-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255, 157, 0, 0.4);
-}
-
-/* Ensures the contact section behaves like the others */
+/* CONTACT */
 #contact {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
-/* CONTACT FORM STYLES */
 .collab-text {
     font-size: 3rem;
     font-weight: 800;
@@ -297,21 +265,15 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     text-align: center;
     text-transform: uppercase;
 }
-
 .contact-form-container {
     width: 100%;
     max-width: 600px;
 }
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group input, 
-.form-group textarea {
+.form-group { margin-bottom: 20px; }
+.form-group input, .form-group textarea {
     width: 100%;
     padding: 15px;
-    background: rgba(208, 204, 204, 0.742); /* Semi-transparent */
+    background: rgba(208, 204, 204, 0.742);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     color: rgb(255, 255, 255);
@@ -320,468 +282,139 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     margin-bottom: 15px;
     transition: 0.3s;
 }
+.form-group input:focus, .form-group textarea:focus { border-color: #ff9d00; }
 
-.form-group input:focus, 
-.form-group textarea:focus {
-    border-color: #ff9d00;
-}
-
-.content-card p {
-    color: #fff;
-    line-height: 1.6;
-}
-
-/* BASE RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
-
-/* NAVBAR WITH CENTERED LINKS */
-.navbar {
-    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-    width: 90%; max-width: 1100px; display: grid;
-    grid-template-columns: 1fr auto 1fr; align-items: center;
-    padding: 12px 40px; background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px); border-radius: 50px; z-index: 1000;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.logo-link {
-    grid-column: 1;
-    text-decoration: none;
-    justify-self: start;
-    transition: transform 0.2s ease;
-}
-
-.logo-link:hover { transform: scale(1.05); }
-
-.logo { font-weight: bold; font-size: 1.2rem; color: #fff; }
-.logo span { color: #ff9d00; }
-
-.nav-links {
-    grid-column: 2;
-    list-style: none;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.nav-spacer {
-    grid-column: 3;
-}
-
-/* NAVIGATION ITEMS */
-.nav-item {
-    text-decoration: none;
-    color: #ffffff;
-    padding: 8px 25px;
-    border-radius: 25px;
-    transition: background-color 0.3s ease;
-}
-
-.nav-item:hover {
-    background-color: rgba(255, 157, 0, 0.3);
-}
-
-/* INSTANT SNAP ANIMATION FOR CLICK */
-.nav-item.active { 
-    background-color: #ff9d00 !important; color: #000 !important; transition: none !important; }
-
-/* HERO SECTION */
-/* SECTION LAYOUTS */
-.page-section, .slide {
-    height: 100vh; display: flex; justify-content: center; 
-    align-items: center; position: relative; overflow: hidden;
-}
-
-.hero-container {
-    display: flex;
-    width: 85%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 60px;
-}
-
-.hero-text h1 { 
-    font-size: 4.5rem; 
-    margin: 15px 0; 
-}
-
-.name{
-    font-size: 20px;
-    color: #ff9d00;
-}
-
-.dl{
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-    text-decoration: none;
-    color: white;
-}
-
-.red-icon { 
-    color: #ff4d4d; 
-    font-family: monospace; 
-}
-
-.orange-circle {
-    width: 380px;
-    height: 380px;
-    background: #ff9d00 url('profile.png') no-repeat center center;
-    background-size: cover;
-    border-radius: 50%;
-    overflow: hidden;
-    
-    /* Glowing Effect */
-    box-shadow: 0 0 20px rgba(255, 157, 0, 0.6), 
-                0 0 40px rgba(255, 157, 0, 0.4), 
-                0 0 60px rgba(255, 157, 0, 0.2);
-                
-    /* Optional: Subtle breathing animation */
-    animation: glowPulse 3s infinite ease-in-out;
-}
-
-.resume-btn {
-    display: inline-block; /* Essential for anchors to respect padding/width */
-    text-decoration: none; /* Removes the default underline */
-    text-align: center;
+/* BACK TO TOP BUTTON */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
     background: #ff9d00;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 20px;
     color: #000;
-    text-decoration: none;
-}
-
-/* HORIZONTAL SCROLL ANIMATION */
-.horizontal-root {
-    width: 100vw;
-    height: 100vh;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-}
-.horizontal-root::-webkit-scrollbar {background:scroll}
-
-.horizontal-wrapper {
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
     display: flex;
-    width: 200vw;
-}
-
-.slide {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    scroll-snap-align: start;
-    position: relative;
-}
-
-/* CARDS & TEXT */
-.glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 40px;
-    padding: 60px;
-}
-
-.content-card {
-    padding: 60px;
-    width: 75%;
-    text-align: center;
-    font-size: 1.4rem;
-}
-
-/* THE BACKGROUND TEXT LABELS */
-.bg-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -40%); /* Slightly lower to start */
-    font-size: 18vw;
-    font-weight: 300;
-    color: rgb(255, 255, 255, 0); /* Hidden by default */
-    z-index: -1;
-    text-transform: uppercase;
-    transition: all 1.2s ease;
-    pointer-events: none;
-    white-space: nowrap;
-}
-
-#experience .bg-text {
-    font-size: 16vw; /* Slightly smaller so the long word fits the edges */
-}
-
-.dev{
-    font-size: 100px;
-}
-
-.yellow-text{
-    color: #a1690d;
-}
-
-.collab{
-    color: #ff9d00;
-}
-
-.active .bg-text {
-    color: rgba(255, 255, 255, 0.97); /* Fades in when active */
-    transform: translate(-50%, -55%); /* Moves to center */
-}
-
-.page-section {
-    min-height: 100vh; /* Ensures the section fills the screen */
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-}
-
-/* Ensure the slides are 'relative' so the bg-text knows where to center */
-.slide, .page-section {
-    position: relative;
-    overflow: hidden;
-}
-
-/* PROJECTS SECTION */
-.github-pill {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 15px 40px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 30px;
-    color: #aaa;
-}
-
-.project-grid { display: flex; gap: 20px; }
-.preview-box { width: 320px; height: 380px; }
-
-/* NEW REVEAL ANIMATIONS */
-/* Ensure the starting state is always hidden and slightly down */
-.reveal {
+    box-shadow: 0 4px 15px rgba(255, 157, 0, 0.5);
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    z-index: 999;
 }
-
-.reveal.active {
+.back-to-top.visible {
     opacity: 1;
     transform: translateY(0);
-    visibility: visible;
+    pointer-events: auto;
 }
-
-/* Red Icon glow effect */
-.red-icon { 
-    color: #ff4d4d; 
-    text-shadow: 0 0 10px rgba(255, 77, 77, 0.5); 
-}
-
-/* Smooth background text reveal */
-.bg-text {
-    position: absolute;
-    font-size: 18vw;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0); /* Start hidden */
-    z-index: -1;
-    text-transform: uppercase;
-    transition: color 1.5s ease;
-}
-
-.active .bg-text {
-    color: rgb(167, 164, 164); /* Fade in slowly */
-}
-
-/* Button Hover Animation */
-.resume-btn {
-    background: #ff9d00;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.resume-btn:hover {
+.back-to-top:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255, 157, 0, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 157, 0, 0.7);
 }
 
-/* Ensures the contact section behaves like the others */
-#contact {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.content-card p {
-    color: #fff;
-    line-height: 1.6;
-}
-
+/* HAMBURGER & MOBILE TOGGLE */
 #menu-toggle, .hamburger {
     display: none;
     visibility: hidden;
     opacity: 0;
-    position: absolute; /* Takes it out of the layout flow */
+    position: absolute;
 }
 
-/* SOCIAL ICONS STYLES */
+/* SOCIAL ICONS */
 .social-links {
     display: flex;
-    justify-content: center; /* Centers the icons horizontally */
+    justify-content: center;
     gap: 25px;
     margin-bottom: 15px;
 }
+.social-icon { color: #888; font-size: 1.5rem; transition: 0.3s; }
+.social-icon:hover { color: #ff9d00; transform: translateY(-3px); }
 
-.social-icon {
-    color: #888;
-    font-size: 1.5rem;
-    transition: 0.3s;
-}
-
-.social-icon:hover {
-    color: #ff9d00;
-    transform: translateY(-3px);
-}
-
-/* FOOTER STYLES */
+/* FOOTER */
 .footer {
     width: 100%;
     padding: 40px 20px;
-    text-align: center; /* Centers everything */
+    text-align: center;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
+.footer p { color: #888; font-size: 0.9rem; letter-spacing: 1px; }
+.footer b { color: #ff9d00; font-weight: 600; }
 
-.footer p {
-    color: #888;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-.footer b {
-    color: #ff9d00; /* Matches your brand orange */
-    font-weight: 600;
-}
-
+/* MOBILE */
 @media (max-width: 600px) {
-    /* 1. Navbar Adjustments */
     .nav-links {
         position: fixed;
-        top: 80px; /* Position it just below the navbar */
-        right: -100%; 
-        width: 180px; /* Make it narrow */
-        height: 50px; /* THE FIX: Let it fit the content, not the whole screen */
-        padding: 20px 0; /* Add some padding top/bottom */
+        top: 60px;
+        right: -100%;
+        width: 180px;
+        height: auto;
+        padding: 25px 10px;
         background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 20px; /* Round the corners to match your design */
+        backdrop-filter: blur(15px);
+        border-radius: 25px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 15px; /* Tighter spacing between links */
-        transition: 0.4s ease-in-out;
+        gap: 12px;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1000;
         pointer-events: none;
     }
+    .nav-links::-webkit-scrollbar { display: none; }
 
-     /*For the Circle on the homepage */
-    .orange-circle {
-        width: 200px; /* Keep your existing size */
-        height: 200px;
-        box-shadow: 0 0 15px rgba(255, 157, 0, 0.6), 
-                    0 0 30px rgba(255, 157, 0, 0.4);
-    }
-
-   .logo-link {
-        grid-column: 2; /* Exact center */
-        justify-self: center;
-        z-index: 2001;
-        position: relative;
-    }
-
-    .logo { font-size: 0.9rem !important; }
-
-    /*For the menu toggle*/
     #menu-toggle { display: none !important; }
 
     #menu-toggle:checked ~ .nav-links {
         right: 20px;
         pointer-events: auto;
     }
-
     #menu-toggle:checked ~ .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     #menu-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .hamburger {
-        grid-column: 3; /* Right column */
-        justify-self: end; /* Far right of that column */
-        display: flex !important; /* Force visibility */
+        grid-column: 3;
+        justify-self: end;
+        display: flex !important;
         flex-direction: column;
         gap: 5px;
-        margin-right: 5px; 
+        margin-right: 5px;
         cursor: pointer;
         z-index: 2001;
         visibility: visible !important;
         opacity: 1 !important;
     }
-
     .hamburger span {
-       display: block;
+        display: block;
         width: 24px;
         height: 2px;
         background: white;
         border-radius: 2px;
         transition: 0.3s ease;
     }
-    /*End of menu toggle*/
 
-    /*Nav Links Scrollbar*/
-    .nav-links::-webkit-scrollbar {
-        display: none;
+    .logo-link {
+        grid-column: 2;
+        justify-self: center;
+        z-index: 2001;
+        position: relative;
     }
+    .logo { font-size: 0.9rem !important; }
+    .nav-spacer { display: none; }
 
-    .nav-links {
-        position: fixed;
-        top: 60px; /* Positioned below the navbar */
-        right: -100%; 
-        width: 180px; /* Width of the floating card */
-        height: auto; /* Adapts to the number of links */
-        
-        padding: 25px 10px; /* Vertical padding for the card */
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(15px);
-        border-radius: 25px; /* Floating card look */
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 12px; /* Space between the bigger pills */
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1000;
-        pointer-events: none;
-    }
-
-
-    /*Items inside the navigation*/
-   .nav-item {
+    .nav-item {
         font-weight: bold;
         font-size: 1rem !important;
-        padding: 12px 20px !important; /* Vertical padding only */
-        width: 85%; /* The pill width */
+        padding: 12px 20px !important;
+        width: 85%;
         display: flex !important;
         justify-content: center;
         align-items: center;
@@ -790,64 +423,38 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
         text-decoration: none;
         transition: 0.3s ease;
     }
-
-    /*effects for active link*/
     .nav-item.active {
         background-color: #ff9d00 !important;
         color: #000 !important;
         border: 1px solid #ff9d00;
     }
 
-    .nav-links::-webkit-scrollbar {
-        display: none; /* Hide scrollbar for Chrome/Safari */
+    .orange-circle {
+        width: 200px;
+        height: 200px;
+        box-shadow: 0 0 15px rgba(255, 157, 0, 0.6), 0 0 30px rgba(255, 157, 0, 0.4);
     }
-    
-    .nav-spacer { display: none; }
 
-    /* 2. Hero Section (Stacks vertically on phones) */
     .hero-container {
-        flex-direction: column-reverse; 
+        flex-direction: column-reverse;
         text-align: center;
         width: 90%;
         padding: 20px;
         gap: 20px;
     }
-
     .hero-text h1 { font-size: 2.5rem; }
     .dev { font-size: 40px; }
 
-    .content-card {
-        width: 90%;
-        padding: 30px;
-        font-size: 1.1rem;
-    }
+    .about-container { flex-direction: column; align-items: center;}
+    .content-card { width: 90%; padding: 30px; font-size: 1.1rem; }
+    .collab-text { font-size: 1.8rem; }
+    .bg-text { font-size: 15vw; }
 
-    /*For the contact part*/
-    .collab-text {
-        font-size: 1.8rem;
-    }
+    .project-grid { flex-direction: column; align-items: center; gap: 15px; }
+    .preview-box { width: 100%; max-width: 300px; height: 350px; }
 
-    /* 4. Background Text (Scales down for mobile) */
-    .bg-text {
-        font-size: 15vw; /* Responsive font size */
-    }
+    .footer { padding: 20px 10px; }
+    .footer p { font-size: 0.8rem; }
 
-    .project-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .preview-box {
-        width: 100%;
-        max-width: 300px;
-        height: 350px;
-    }
-
-    .footer {
-        padding: 20px 10px;
-    }
-    .footer p {
-        font-size: 0.8rem;
-    }
+    .back-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; font-size: 1.1rem; }
 }
