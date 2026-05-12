@@ -68,7 +68,8 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 }
 .hero-text h1 { font-size: 4.5rem; margin: 15px 0; }
 
-.name { font-size: 20px; color: #ff9d00; }
+.intro{font-size: 35px;}
+.name { font-size: 35px; color: #ff9d00; }
 .dev { font-size: 100px; }
 .red-icon { color: #ff4d4d; font-family: monospace; text-shadow: 0 0 10px rgba(255, 77, 77, 0.5); }
 .yellow-text { color: #ff9d00be; }
