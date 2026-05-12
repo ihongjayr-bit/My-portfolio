@@ -709,8 +709,41 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     .project-cards-grid { flex-direction: column; align-items: center; gap: 18px; }
     .proj-card { width: 90%; max-width: 380px; }
     .proj-img-wrap { height: 180px; }
-    .experience-grid { flex-direction: column; align-items: center; gap: 16px; }
-    .exp-card { width: 90%; max-width: 360px; }
+
+    /* Experience: let section grow taller than viewport on mobile */
+    #experience {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 0 60px;
+    }
+    .experience-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    /* Compact horizontal cards: image on left, text on right */
+    .exp-card {
+        width: 90%;
+        max-width: 360px;
+        flex-direction: row;
+        border-radius: 18px;
+    }
+    .exp-img {
+        width: 110px;
+        min-width: 110px;
+        height: auto;
+        min-height: 110px;
+        border-radius: 0;
+        flex-shrink: 0;
+    }
+    .exp-info {
+        padding: 14px 16px;
+        gap: 4px;
+        justify-content: center;
+    }
+    .exp-info h3 { font-size: 0.9rem; }
+    .exp-company { font-size: 0.78rem; }
+    .exp-date { font-size: 0.72rem; }
 
     .footer { padding: 20px 10px; }
     .footer p { font-size: 0.8rem; }
