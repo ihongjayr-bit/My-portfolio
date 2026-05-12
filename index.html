@@ -25,7 +25,7 @@
     <ul class="nav-links">
         <li><a href="#about-scroll" class="nav-item">About</a></li>
         <li><a href="#experience" class="nav-item">Experience</a></li>
-        <li><a href="#projects" class="nav-item">Projects</a></li>
+        <li><a href="#projects" class="nav-item">Project</a></li>
         <li><a href="#contact" class="nav-item">Contact</a></li>
     </ul>
     <div class="nav-spacer"></div>
@@ -67,34 +67,135 @@
             <button class="skill-btn" id="go-to-skills">Click to see skill</button>
         </div> <div class="slide reveal" id="slide-skills">
             <h1 class="bg-text"><span class="yellow-text">S</span>KILLS</h1>
-            <div class="glass-card content-card">
-                <p>Proficient in: <span style="font-weight: bold; color: rgb(255, 140, 0);"><br>Python,<br> Java,<br> CSS,<br> and C++</span>.</p>
+            <div class="glass-card info-card">
+                <p>Proficient in the following programming languages:</p>
+            </div>
+            <div class="skills-grid">
+
+                <div class="skill-card">
+                    <!-- Python logo -->
+                    <svg class="skill-logo" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                        <linearGradient id="py-a" x1="70.252" y1="1237.476" x2="170.659" y2="1151.089" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.563 0 0 .568 -29.215 -701.892)">
+                            <stop offset="0" stop-color="#5A9FD4"/><stop offset="1" stop-color="#306998"/>
+                        </linearGradient>
+                        <linearGradient id="py-b" x1="209.474" y1="1098.811" x2="173.62" y2="1149.537" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.563 0 0 .568 -29.215 -701.892)">
+                            <stop offset="0" stop-color="#FFD43B"/><stop offset="1" stop-color="#FFE873"/>
+                        </linearGradient>
+                        <path fill="url(#py-a)" d="M63.391 1.988c-4.222.02-8.252.379-11.8 1.007-10.45 1.846-12.346 5.71-12.346 12.837v9.411h24.693v3.137H29.977c-7.176 0-13.46 4.313-15.426 12.521-2.268 9.405-2.368 15.275 0 25.096 1.755 7.311 5.947 12.519 13.124 12.519h8.491V67.234c0-8.151 7.051-15.34 15.426-15.34h24.665c6.866 0 12.346-5.654 12.346-12.548V15.833c0-6.693-5.646-11.72-12.346-12.837-4.244-.706-8.645-1.027-12.866-1.008zM50.037 9.557c2.55 0 4.634 2.117 4.634 4.721 0 2.593-2.083 4.69-4.634 4.69-2.56 0-4.633-2.097-4.633-4.69-.001-2.604 2.073-4.721 4.633-4.721z"/>
+                        <path fill="url(#py-b)" d="M91.682 28.38v10.966c0 8.5-7.208 15.655-15.426 15.655H51.591c-6.756 0-12.346 5.783-12.346 12.549v23.515c0 6.691 5.818 10.628 12.346 12.547 7.816 2.297 15.312 2.713 24.665 0 6.216-1.801 12.346-5.423 12.346-12.547v-9.412H63.938v-3.138h37.012c7.176 0 9.852-5.005 12.348-12.519 2.578-7.735 2.467-15.174 0-25.096-1.774-7.145-5.161-12.521-12.348-12.521h-9.268zM77.809 87.927c2.561 0 4.634 2.097 4.634 4.692 0 2.602-2.074 4.719-4.634 4.719-2.55 0-4.633-2.117-4.633-4.719 0-2.595 2.083-4.692 4.633-4.692z"/>
+                    </svg>
+                    <span class="skill-name">Python</span>
+                </div>
+
+                <div class="skill-card">
+                    <!-- Java logo -->
+                    <svg class="skill-logo" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#0074BD" d="M47.617 98.12s-1.352 7.898 1.352 10.608c3.312 3.313 11.998 2.666 17.449 2.393 0 0 1.523 9.784 8.498 11.979 7.776 2.455 17.15-2.527 21.357-11.979 3-6.773 2.104-21.482-4.752-28.338l-16.232-10.29L47.617 98.12z"/>
+                        <path fill="#EA6119" d="M64 0C28.656 0 0 28.656 0 64s28.656 64 64 64 64-28.656 64-64S99.344 0 64 0zm-.169 111.68c-10.6 0-18.96-3.11-21.729-7.688l4.524-2.605c1.918 3.067 8.134 5.249 17.205 5.249 12.376 0 18.418-4.234 18.418-6.254 0-9.496-36.455 2.07-36.455-15.498 0-8.07 8.693-13.787 23.411-13.787 9.334 0 16.633 2.369 21.184 6.723l-4.596 2.65c-3.428-3.208-9.088-5.156-16.588-5.156-10.135 0-15.289 3.342-15.289 6.57 0 9.039 36.467-1.938 36.467 15.574-.001 8.756-9.601 14.222-26.552 14.222z"/>
+                    </svg>
+                    <span class="skill-name">Java</span>
+                </div>
+
+                <div class="skill-card">
+                    <!-- CSS logo -->
+                    <svg class="skill-logo" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#1572B6" d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z"/>
+                        <path fill="#33A9DC" d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z"/>
+                        <path fill="#fff" d="M64.001 51.429H45.217l-1.271-14.163H64.001V23.435H29.738l.337 3.711 3.461 38.849H64.001V51.429z"/>
+                        <path fill="#fff" d="M64.001 92.062l-.064.017-16.145-4.356-1.031-11.563H32.822l2.031 22.757 29.128 8.084.02-.006V92.062z"/>
+                        <path fill="#ebebeb" d="M63.988 51.429v13.866H81.77l-1.667 18.545-16.115 4.358v14.422l29.145-8.078.214-2.38 3.347-37.452.341-3.881H63.988z"/>
+                        <path fill="#ebebeb" d="M63.988 23.435v13.831H96.77l.28-3.144.637-7.108.337-3.579H63.988z"/>
+                    </svg>
+                    <span class="skill-name">CSS</span>
+                </div>
+
+                <div class="skill-card">
+                    <!-- C++ logo -->
+                    <svg class="skill-logo" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#659AD2" d="M115.4 30.7L67.1 2.9c-.8-.5-1.9-.7-3.1-.7-1.2 0-2.3.3-3.1.7l-48 27.9c-1.7 1-2.9 3.5-2.9 5.4v55.7c0 1.1.2 2.3.9 3.4l.2-.1c-.7-1.1-.9-2.3-.9-3.4V36.1c0-1.9 1.2-4.4 2.9-5.4l48-27.9c.8-.5 1.9-.7 3.1-.7 1.2 0 2.3.3 3.1.7l48.3 27.8c.8.5 1.5 1.3 2 2.1-.5-.8-1.2-1.6-2.2-2z"/>
+                        <path fill="#00599C" d="M12.1 95.6c.5.8 1.2 1.5 1.9 1.9l48.2 27.9c.8.5 1.9.7 3.1.7 1.2 0 2.3-.3 3.1-.7l48-27.9c1.7-1 2.9-3.5 2.9-5.4V36.1c0-1.1-.2-2.3-.9-3.4l-6.3 3.6V92c0 1.9-1.2 4.4-2.9 5.4l-48 27.8c-.8.5-1.9.7-3.1.7-1.2 0-2.3-.3-3.1-.7L7.8 97.5c-.7-.4-1.4-1.1-1.9-1.9l6.2 0z"/>
+                        <path fill="#004482" d="M117.6 31.6c-.5-.8-1.2-1.6-2-2.1l.3.2c1 .6 1.7 1.4 2.1 2.3-.1-.2-.2-.3-.4-.4z"/>
+                        <path fill="#659AD2" d="M64 95c-17.1 0-31-13.9-31-31s13.9-31 31-31c9.7 0 18.8 4.6 24.7 12.4l-11.6 6.7C73.8 47 69 44.5 64 44.5c-10.8 0-19.5 8.7-19.5 19.5S53.2 83.5 64 83.5c5.1 0 9.9-2.5 13.1-6.6l11.6 6.7C82.8 91.4 73.7 95 64 95z"/>
+                        <path fill="#659AD2" d="M96 62.5h-3.5V59h-3.5v3.5H85.5V66H89v3.5h3.5V66H96z"/>
+                        <path fill="#659AD2" d="M110.5 62.5H107V59h-3.5v3.5H100V66h3.5v3.5h3.5V66h3.5z"/>
+                    </svg>
+                    <span class="skill-name">C++</span>
+                </div>
+
             </div>
             <button class="about-btn" id="go-to-about">Click to go back</button>
         </div> </div> </section>
 
         <section id="experience" class="page-section reveal">
             <h1 class="bg-text"><span class="yellow-text">E</span>XPERIENCE</h1>
-            <div class="project-content">
-                    <div class="glass-card preview-box"><p><b>Game Developer Intern</b><br>Opol Community College<br>2023 - Present</p>
-                        <br>
-                    <p><b>Welder and Fabricator (on call)</b><br>Big M Car Display<br>2019 - Present</p>
-                    <br>
-                    <p><b>Full-stack & Backend Developer</b><br>Opol Community College<br>2019 - Present</p>
+            <div class="experience-grid">
+
+                <div class="exp-card glass-card">
+                    <div class="exp-img" style="background-image: url('game dev.webp');"></div>
+                    <div class="exp-info">
+                        <h3>Game Developer Intern</h3>
+                        <p class="exp-company">Opol Community College</p>
+                        <p class="exp-date">2023 – Present</p>
                     </div>
+                </div>
+
+                <div class="exp-card glass-card">
+                    <div class="exp-img" style="background-image: url('welder.webp');"></div>
+                    <div class="exp-info">
+                        <h3>Welder & Fabricator <span class="exp-tag">On Call</span></h3>
+                        <p class="exp-company">Big M Car Display</p>
+                        <p class="exp-date">2019 – Present</p>
+                    </div>
+                </div>
+
+                <div class="exp-card glass-card">
+                    <div class="exp-img" style="background-image: url('backend.jpg');"></div>
+                    <div class="exp-info">
+                        <h3>Full-stack & Backend Developer</h3>
+                        <p class="exp-company">Opol Community College</p>
+                        <p class="exp-date">2019 – Present</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <section id="projects" class="page-section reveal">
-            <h1 class="bg-text"><span class="yellow-text">P</span>ROJECTS</h1>
-            <div class="project-content">
-                <div class="github-pill">
-                    <a class="dl" href="https://github.com/ihongjayr-bit/Demon-na-Mahal">
-                    <b>Download <span class="collab">here</span></a>
+            <h1 class="bg-text"><span class="yellow-text">P</span>ROJECT</h1>
+            <div class="project-cards-grid">
+
+                <div class="proj-card glass-card">
+                    <div class="proj-img-wrap">
+                        <div class="proj-img-bg" style="background-image: url('preview.gif');"></div>
+                        <div class="proj-img-overlay"></div>
+                        <div class="proj-img-inner">
+                            <img src="preview.gif" alt="Demon-na Mahal preview" class="proj-gif">
+                        </div>
+                    </div>
+                    <div class="proj-info">
+                        <h3 class="proj-title">Demon-na Mahal <span class="proj-emoji">😈</span></h3>
+                        <p class="proj-desc">A pixel-art action game built in Unity featuring character selection and dungeon combat.</p>
+                        <a class="proj-link" href="https://github.com/ihongjayr-bit/Demon-na-Mahal" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> Download on GitHub
+                        </a>
+                    </div>
                 </div>
-                <div class="project-grid">
-                    <div class="glass-card preview-box" style="background-image: url('preview.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+
+                <div class="proj-card glass-card">
+                    <div class="proj-img-wrap">
+                        <div class="proj-img-bg" style="background-image: url('demo.jpg');" alt="Pic Owner(Facebook: Opal)"></div>
+                        <div class="proj-img-overlay"></div>
+                        <div class="proj-img-inner">
+                            <img src="demo.jpg" alt="Survival Horror prototype" class="proj-gif">
+                        </div>
+                    </div>
+                    <div class="proj-info">
+                        <h3 class="proj-title">Survival-Horror Level Prototype</h3>
+                        <p class="proj-desc">An isometric pixel-art horror level prototype with atmospheric lighting and combat mechanics.</p>
+                        <span class="proj-tag-wip">Work In Progress</span>
+                    </div>
                 </div>
+
             </div>
         </section>
 

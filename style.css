@@ -234,21 +234,203 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 }
 
 /* PROJECTS */
-.github-pill {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 15px 40px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 30px;
-    color: #aaa;
+.project-cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    justify-content: center;
+    align-items: stretch;
+    z-index: 2;
+    max-width: 900px;
+    width: 90%;
 }
-.project-content {
+
+.proj-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 380px;
+    padding: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.35s ease;
 }
-.project-grid { display: flex; gap: 20px; }
-.preview-box { width: 320px; height: 380px; }
+
+.proj-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 50px rgba(255, 157, 0, 0.22),
+                0 0 0 1px rgba(255, 157, 0, 0.28);
+}
+
+/* Image area: blurred background + sharp centered preview */
+.proj-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.proj-img-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(10px) brightness(0.5) saturate(1.2);
+    transform: scale(1.1);
+}
+
+.proj-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.proj-img-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.proj-gif {
+    max-width: 100%;
+    max-height: 196px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* Text area */
+.proj-info {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.proj-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.proj-emoji { font-style: normal; }
+
+.proj-desc {
+    font-size: 0.85rem;
+    color: #aaa;
+    line-height: 1.5;
+}
+
+.proj-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    color: #ff9d00;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+.proj-link:hover { opacity: 0.75; }
+
+.proj-tag-wip {
+    display: inline-block;
+    margin-top: auto;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: rgba(255, 157, 0, 0.12);
+    color: #ff9d00;
+    border: 1px solid rgba(255, 157, 0, 0.3);
+    border-radius: 20px;
+    padding: 3px 12px;
+    width: fit-content;
+}
+
+/* EXPERIENCE GRID */
+.experience-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: stretch;
+    z-index: 2;
+    max-width: 1100px;
+    width: 90%;
+}
+
+.exp-card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.35s ease;
+}
+
+.exp-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 16px 40px rgba(255, 157, 0, 0.2),
+                0 0 0 1px rgba(255, 157, 0, 0.25);
+}
+
+.exp-img {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+
+.exp-info {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.exp-info h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.exp-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: rgba(255, 157, 0, 0.15);
+    color: #ff9d00;
+    border: 1px solid rgba(255, 157, 0, 0.35);
+    border-radius: 20px;
+    padding: 2px 10px;
+    letter-spacing: 0.4px;
+}
+
+.exp-company {
+    font-size: 0.88rem;
+    color: #aaa;
+}
+
+.exp-date {
+    font-size: 0.8rem;
+    color: #ff9d00;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
 
 /* CONTACT */
 #contact {
@@ -283,6 +465,75 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     transition: 0.3s;
 }
 .form-group input:focus, .form-group textarea:focus { border-color: #ff9d00; }
+
+/* INFO CARD (above skills grid) */
+.info-card {
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 4px;
+    z-index: 2;
+}
+
+/* SKILL CARDS GRID */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    max-width: 700px;
+}
+
+.skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 130px;
+    padding: 28px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    cursor: default;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-14px) scale(1.12);
+    background: rgba(255, 157, 0, 0.08);
+    box-shadow: 0 12px 30px rgba(255, 157, 0, 0.25),
+                0 0 0 1px rgba(255, 157, 0, 0.3);
+}
+
+.skill-logo {
+    width: 64px;
+    height: 64px;
+    transition: transform 0.3s ease;
+}
+
+.skill-card:hover .skill-logo {
+    transform: scale(1.08);
+}
+
+.skill-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ccc;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.skill-card:hover .skill-name {
+    color: #ff9d00;
+}
 
 /* BACK TO TOP BUTTON */
 .back-to-top {
@@ -446,12 +697,19 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     .dev { font-size: 40px; }
 
     .about-container { flex-direction: column; align-items: center;}
+    .skills-grid { gap: 14px; max-width: 90vw; }
+    .skill-card { width: 100px; padding: 20px 14px; }
+    .skill-logo { width: 48px; height: 48px; }
+    .skill-name { font-size: 0.8rem; }
     .content-card { width: 90%; padding: 30px; font-size: 1.1rem; }
     .collab-text { font-size: 1.8rem; }
     .bg-text { font-size: 15vw; }
 
-    .project-grid { flex-direction: column; align-items: center; gap: 15px; }
-    .preview-box { width: 100%; max-width: 300px; height: 350px; }
+    .project-cards-grid { flex-direction: column; align-items: center; gap: 18px; }
+    .proj-card { width: 90%; max-width: 380px; }
+    .proj-img-wrap { height: 180px; }
+    .experience-grid { flex-direction: column; align-items: center; gap: 16px; }
+    .exp-card { width: 90%; max-width: 360px; }
 
     .footer { padding: 20px 10px; }
     .footer p { font-size: 0.8rem; }
