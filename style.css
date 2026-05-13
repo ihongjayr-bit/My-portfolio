@@ -145,15 +145,17 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 .horizontal-root {
     width: 100vw;
     height: 100vh;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    overflow: hidden;
     display: flex;
+    position: relative;
 }
 .horizontal-root::-webkit-scrollbar { display: none; }
 
 .horizontal-wrapper {
     display: flex;
     width: 200vw;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
 .slide {
@@ -215,7 +217,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     white-space: nowrap;
 }
 .active .bg-text {
-    color: rgba(255, 255, 255, 0.799);
+    color: rgba(184, 184, 184, 0.799);
     transform: translate(-50%, -55%);
 }
 
@@ -238,18 +240,20 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 .project-cards-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 28px;
+    gap: 20px;
     justify-content: center;
     align-items: stretch;
     z-index: 2;
-    max-width: 900px;
+    max-width: 860px;
     width: 90%;
+    padding-top: 80px; /* room for fixed navbar */
+    padding-bottom: 20px;
 }
 
 .proj-card {
     display: flex;
     flex-direction: column;
-    width: 380px;
+    width: 360px;
     padding: 0;
     border-radius: 24px;
     overflow: hidden;
@@ -267,7 +271,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 .proj-img-wrap {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 180px;
     overflow: hidden;
 }
 
@@ -300,7 +304,7 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
 .proj-gif {
     max-width: 100%;
-    max-height: 196px;
+    max-height: 156px;
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -308,10 +312,10 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
 /* Text area */
 .proj-info {
-    padding: 22px 24px;
+    padding: 16px 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     flex: 1;
 }
 
@@ -434,6 +438,11 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 }
 
 /* CONTACT */
+#projects, #contact {
+    padding-top: 70px;
+    box-sizing: border-box;
+}
+
 #contact {
     display: flex;
     flex-direction: column;
@@ -441,30 +450,32 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     align-items: center;
 }
 .collab-text {
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 800;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     color: #fff;
     text-align: center;
     text-transform: uppercase;
 }
 .contact-form-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 560px;
+    padding: 36px 40px;
 }
-.form-group { margin-bottom: 20px; }
+.form-group { margin-bottom: 12px; }
 .form-group input, .form-group textarea {
     width: 100%;
-    padding: 15px;
+    padding: 12px 15px;
     background: rgba(208, 204, 204, 0.742);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     color: rgb(255, 255, 255);
     font-family: inherit;
     outline: none;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     transition: 0.3s;
 }
+.form-group textarea { height: 110px; resize: none; }
 .form-group input:focus, .form-group textarea:focus { border-color: #ff9d00; }
 
 /* INFO CARD (above skills grid) */
@@ -473,8 +484,8 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     border-radius: 50px;
     text-align: center;
     font-size: 1rem;
-    color: #ccc;
-    margin-bottom: 4px;
+    color: #ffffff;
+    margin-bottom: 65px;
     z-index: 2;
 }
 
@@ -526,8 +537,8 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
 
 .skill-name {
     font-size: 0.95rem;
-    font-weight: 600;
-    color: #ccc;
+    font-weight: 750;
+    color: #ffffff;
     letter-spacing: 0.5px;
     transition: color 0.3s ease;
 }
@@ -569,12 +580,109 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     box-shadow: 0 6px 20px rgba(255, 157, 0, 0.7);
 }
 
-/* HAMBURGER & MOBILE TOGGLE */
+/* HAMBURGER & MOBILE TOGGLE — hidden by default everywhere */
 #menu-toggle, .hamburger {
     display: none;
     visibility: hidden;
     opacity: 0;
     position: absolute;
+}
+
+/* ── DESKTOP HOMEPAGE: floating hamburger, navbar hidden ── */
+@media (min-width: 601px) {
+
+    /* Full navbar: hidden until scrolled */
+    .navbar {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-80px);
+        pointer-events: none;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .navbar.scrolled {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Desktop hamburger button — floats top-right on homepage */
+    #desktop-hamburger {
+        position: fixed;
+        top: 24px;
+        right: 32px;
+        z-index: 2000;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        opacity: 1;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #desktop-hamburger span {
+        display: block;
+        width: 26px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition: 0.3s ease;
+    }
+    #desktop-hamburger:hover span { background: #ff9d00; }
+
+    /* Hide hamburger once scrolled (navbar takes over) */
+    #desktop-hamburger.hidden {
+        opacity: 0;
+        transform: translateY(-20px);
+        pointer-events: none;
+    }
+
+    /* Desktop dropdown nav menu */
+    #desktop-nav-menu {
+        position: fixed;
+        top: 80px;
+        right: 32px;
+        z-index: 1999;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 18px 14px;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        min-width: 160px;
+    }
+    #desktop-nav-menu.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    /* Hide the dropdown once scrolled */
+    #desktop-nav-menu.hidden {
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    #desktop-nav-menu a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 10px 18px;
+        border-radius: 12px;
+        text-align: center;
+        transition: background 0.2s ease, color 0.2s ease;
+    }
+    #desktop-nav-menu a:hover {
+        background: rgba(255, 157, 0, 0.2);
+        color: #ff9d00;
+    }
 }
 
 /* SOCIAL ICONS */
@@ -749,4 +857,5 @@ body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif
     .footer p { font-size: 0.8rem; }
 
     .back-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; font-size: 1.1rem; }
+
 }

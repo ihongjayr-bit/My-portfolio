@@ -4,160 +4,144 @@ const revealElements = document.querySelectorAll('.reveal');
 const skillBtn = document.getElementById('go-to-skills');
 const backBtn = document.getElementById('go-to-about');
 const aboutRoot = document.querySelector('.horizontal-root');
+const horizontalWrapper = document.querySelector('.horizontal-wrapper');
 const sections = document.querySelectorAll('section');
 const menuToggle = document.getElementById('menu-toggle');
+const navbar = document.querySelector('.navbar');
+const desktopHamburger = document.getElementById('desktop-hamburger');
+const desktopNavMenu = document.getElementById('desktop-nav-menu');
 
-if (skillBtn && aboutRoot) {
-    skillBtn.addEventListener('click', () => {
-        // Scrolls the horizontal container to the width of one slide
-        const slideWidth = document.querySelector('.slide').offsetWidth;
-        aboutRoot.scrollTo({
-            left: slideWidth,
-            behavior: 'smooth'
-        });
-    });
+// ─── HORIZONTAL SLIDE (About / Skills) ───────────────────────────────────────
+let currentSlide = 0;
+function goToSlide(index) {
+    currentSlide = index;
+    horizontalWrapper.style.transform = `translateX(-${index * 100}vw)`;
 }
-
-if (backBtn && aboutRoot) {
-    backBtn.addEventListener('click', () => {
-        // Scrolls the horizontal container back to the start (0)
-        aboutRoot.scrollTo({
-            left: 0,
-            behavior: 'smooth'
-        });
-    });
-}
+if (skillBtn) skillBtn.addEventListener('click', () => goToSlide(1));
+if (backBtn)  backBtn.addEventListener('click',  () => goToSlide(0));
 
 const resetObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        // If the user scrolls away from the About section entirely
-        if (!entry.isIntersecting) {
-            aboutRoot.scrollTo({ left: 0 }); 
+    entries.forEach(entry => { if (!entry.isIntersecting) goToSlide(0); });
+}, { threshold: 0.1 });
+if (aboutRoot) resetObserver.observe(aboutRoot);
+
+// ─── NAVBAR + DESKTOP HAMBURGER ──────────────────────────────────────────────
+const homeSection = document.getElementById('home');
+const isDesktop = () => window.innerWidth >= 601;
+
+function updateNavbar() {
+    if (!homeSection) return;
+    const homeBottom = homeSection.getBoundingClientRect().bottom;
+    const pastHome = homeBottom <= 80;
+
+    if (isDesktop()) {
+        if (pastHome) {
+            // Show full navbar pill, hide hamburger & dropdown
+            navbar.classList.add('scrolled');
+            desktopHamburger && desktopHamburger.classList.add('hidden');
+            desktopNavMenu && desktopNavMenu.classList.add('hidden');
+            desktopNavMenu && desktopNavMenu.classList.remove('open');
+        } else {
+            // Back on homepage — hide navbar, show hamburger
+            navbar.classList.remove('scrolled');
+            desktopHamburger && desktopHamburger.classList.remove('hidden');
+            desktopNavMenu && desktopNavMenu.classList.remove('hidden');
+        }
+    }
+}
+
+window.addEventListener('scroll', updateNavbar, { passive: true });
+window.addEventListener('resize', updateNavbar);
+updateNavbar();
+
+// ─── DESKTOP HAMBURGER TOGGLE ─────────────────────────────────────────────────
+if (desktopHamburger && desktopNavMenu) {
+    desktopHamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        desktopNavMenu.classList.toggle('open');
+    });
+
+    // Close when a link is clicked
+    desktopNavMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            desktopNavMenu.classList.remove('open');
+        });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!desktopHamburger.contains(e.target) && !desktopNavMenu.contains(e.target)) {
+            desktopNavMenu.classList.remove('open');
         }
     });
-}, { threshold: 0.1 });
-
-if (logoTrigger) {
-    logoTrigger.addEventListener('click', () => {
-    navLinks.forEach(n => n.classList.remove('active'));
-        });
 }
 
-// 1. Force Animation Replay on Click
-function triggerAnimation(targetId) {
-    const section = document.querySelector(targetId);
-    if (!section) return;
-    
-    const revealBoxes = section.querySelectorAll('.reveal');
-    revealBoxes.forEach(box => {
-        box.classList.remove('active');
-        setTimeout(() => box.classList.add('active'), 10);
+// ─── LOGO CLICK ───────────────────────────────────────────────────────────────
+if (logoTrigger) {
+    logoTrigger.addEventListener('click', () => {
+        navLinks.forEach(n => n.classList.remove('active'));
     });
 }
 
-// 2. Nav Click Logic
+// ─── MOBILE NAV ACTIVE + HAMBURGER CLOSE ─────────────────────────────────────
 navLinks.forEach(link => {
-    link.addEventListener('mousedown', function() {
+    link.addEventListener('mousedown', function () {
         navLinks.forEach(n => n.classList.remove('active'));
         this.classList.add('active');
     });
-});
-
-navLinks.forEach(link => {
     link.addEventListener('click', () => {
         if (menuToggle) menuToggle.checked = false;
     });
 });
 
-const scrollOptions = {
-    threshold: 0.6, // Highlight when 60% of the section is visible
-    rootMargin: "0px"
-};
-
+// ─── INTERSECTION: nav highlight + reveal ────────────────────────────────────
 const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Get the id of the section in view
             const id = entry.target.getAttribute('id');
-            
-            // Remove active class from all links
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                // Add active class if the href matches the section id
-                if (link.getAttribute('href') === `#${id}`) {
-                    link.classList.add('active');
-                }
+                if (link.getAttribute('href') === `#${id}`) link.classList.add('active');
             });
-
-            // Re-trigger the reveal animation
             entry.target.classList.add('active');
         } else {
-            // Optional: remove reveal class when leaving (keeps it clean)
             entry.target.classList.remove('active');
         }
     });
-}, scrollOptions);
+}, { threshold: 0.6 });
+sections.forEach(section => scrollObserver.observe(section));
 
-sections.forEach(section => {
-    scrollObserver.observe(section);
-});
-
-// 3. Intersection Observer (Scroll behavior)
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        } else {
-            entry.target.classList.remove('active'); // Reset so it replays
-        }
+        if (entry.isIntersecting) entry.target.classList.add('active');
+        else entry.target.classList.remove('active');
     });
 }, { threshold: 0.15 });
+revealElements.forEach(el => revealObserver.observe(el));
 
+// ─── CONTACT FORM ─────────────────────────────────────────────────────────────
 const feedbackForm = document.getElementById('feedback-form');
-
 if (feedbackForm) {
     feedbackForm.addEventListener('submit', (e) => {
         e.preventDefault();
-
         alert("Form submitted!");
-
-        const email = document.getElementById('user-email').value;
+        const email   = document.getElementById('user-email').value;
         const message = document.getElementById('user-message').value;
-        
-        // Replace this with your actual email address
-        const myEmail = "ihongjayr@gmail.com"; 
-        
+        const myEmail = "ihongjayr@gmail.com";
         const subject = encodeURIComponent("Portfolio Feedback/Collaboration");
-        const body = encodeURIComponent(`From: ${email}\n\nMessage:\n${message}`);
-
-        // Redirects user to their email client
-       const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${subject}&body=${body}`;
-        window.open(gmailUrl, '_blank');
+        const body    = encodeURIComponent(`From: ${email}\n\nMessage:\n${message}`);
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${subject}&body=${body}`, '_blank');
     });
 }
 
-revealElements.forEach(el => revealObserver.observe(el));
-resetObserver.observe(aboutRoot);
-
-// BACK TO TOP BUTTON
+// ─── BACK TO TOP ──────────────────────────────────────────────────────────────
 const backToTopBtn = document.getElementById('back-to-top');
-const homeSection = document.getElementById('home');
-
 function updateBackToTop() {
     if (!backToTopBtn || !homeSection) return;
     const homeBottom = homeSection.getBoundingClientRect().bottom;
-    // Show only when #home has fully scrolled out of view
-    if (homeBottom <= 0) {
-        backToTopBtn.classList.add('visible');
-    } else {
-        backToTopBtn.classList.remove('visible');
-    }
+    backToTopBtn.classList.toggle('visible', homeBottom <= 0);
 }
-
 window.addEventListener('scroll', updateBackToTop, { passive: true });
-
 if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
